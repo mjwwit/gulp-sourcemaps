@@ -164,6 +164,10 @@ module.exports.write = function write(destPath, options) {
       return unixStylePath(filePath);
     });
 
+    if (typeof options.mapSources === 'function') {
+      sourceMap.sources = sourceMap.sources.map(options.mapSources);
+    }
+
     if (typeof options.sourceRoot === 'function') {
       sourceMap.sourceRoot = options.sourceRoot(file);
     } else {
